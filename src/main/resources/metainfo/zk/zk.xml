@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk>
+    <config-name>green1</config-name>
+    <!-- [Optional]
+    Uncomment if you want to defines the application's name
+
+    <preference>
+        <name>org.zkoss.zk.ui.WebApp.name</name>
+        <value>greenstyle</value>
+    </preference>
+    -->
+
+</zk>

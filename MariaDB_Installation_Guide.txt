@@ -1,0 +1,27 @@
+Install MariaDB and create database on RHEL 8:
+
+ssh masonhsieh@192.168.89.184
+[SSH]$ sudo yum install mariadb-server
+[SSH]$ sudo systemctl enable mariadb.service
+[SSH]$ sudo systemctl start mariadb.service
+[SSH]$ sudo mysql_secure_installation
+***********************************************
+	Set root password? [Y/n] Y
+	Remove anonymous users? [Y/n] Y
+	Disallow root login remotely? [Y/n] Y
+	Remove test database and access to it? [Y/n] Y
+	Reload privilege tables now? [Y/n] Y
+***********************************************
+	
+[SSH]$ mysql -u root -p
+***********************************************
+	MariaDB [(none)]> create database greenstyle;
+	MariaDB [(none)]> grant all on greenstyle.* to greendba@localhost identified by 'greendba';
+	MariaDB [(none)]> quit
+***********************************************
+
+[SSH]$ mysql -u greendba -p'greendba' greenstyle
+***********************************************
+	MariaDB [greenstyle]> 
+	MariaDB [(none)]> quit
+***********************************************
