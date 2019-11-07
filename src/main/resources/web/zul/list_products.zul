@@ -1,8 +1,8 @@
 <?link rel="stylesheet" type="text/css" href="~./css/style.css"?>
 <zk>
     <borderlayout hflex="1" vflex="1">
-        <north height="100px" border="none"/>
-        <west width="260px" border="none" collapsible="true" splittable="true" minsize="300"/>
+        <north height="10px" border="none"/>
+        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300"/>
         <center id="mainContent" autoscroll="true" border="none">
             <window title="List All Products" width="100%" border="normal"
                     apply="com.greenstyle.greenstore.controller.ProductSelectorComposer">
@@ -36,6 +36,8 @@
             </window>
         </center>
         <south border="none">
+<!--            apply 需要 zuti，這個jar在CE版本的zk maven repository已經找不到！ -->
+<!--            <apply templateURI="~./zul/footer.zul" />-->
             <include src="~./zul/footer.zul"/>
         </south>
     </borderlayout>
