@@ -3,20 +3,20 @@ package com.greenstyle.greenstore.model;
 import java.io.Serializable;
 
 /**
- * <code>PageLink</code>
+ * <code>MenuItem</code>
  *
  * @author masonhsieh
  * @version 1.0
  */
-public class PageLink implements Serializable {
-    private static final long serialVersionUID = 4234033770385016776L;
+public class MenuItem implements Serializable {
+    private static final long serialVersionUID = 5426754824625310377L;
 
     private String name;
     private String label;
     private String iconUri;
     private String pageUri;
 
-    public PageLink(String name, String label, String iconUri, String pageUri) {
+    public MenuItem(String name, String label, String iconUri, String pageUri) {
         this.name = name;
         this.label = label;
         this.iconUri = iconUri;
