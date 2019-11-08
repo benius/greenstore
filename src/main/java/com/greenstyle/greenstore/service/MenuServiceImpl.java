@@ -5,18 +5,20 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * <code><menuServiceImpl/code>
+ * <code>menuServiceImpl</code>
  *
  * @author masonhsieh
  * @version 1.0
  */
 @Service("menuService")
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl implements MenuService, Serializable {
+    private static final long serialVersionUID = 5597916778309976953L;
 
     private Map<String, MenuItem> menuItemMap = new LinkedHashMap<>();
 

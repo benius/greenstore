@@ -2,7 +2,9 @@
 <zk>
     <borderlayout hflex="1" vflex="1">
         <north height="10px" border="none"/>
-        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300"/>
+        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300">
+            <include src="~./zul/menu.zul"/>
+        </west>
         <center id="mainContent" autoscroll="true" border="none">
             <window title="List All Products" width="100%" border="normal"
                     apply="com.greenstyle.greenstore.controller.ProductSelectorComposer">

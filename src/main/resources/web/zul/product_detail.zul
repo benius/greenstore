@@ -1,0 +1,60 @@
+<?link rel="stylesheet" type="text/css" href="~./css/style.css"?>
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<zk>
+    <borderlayout hflex="1" vflex="1">
+        <north height="10px" border="none"/>
+        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300">
+            <include src="~./zul/menu.zul"/>
+        </west>
+        <center id="mainContent" autoscroll="true" border="none">
+            <window title="List All Products" border="normal" hflex="1" vflex="1" contentStyle="overflow:auto" 
+                    apply="com.greenstyle.greenstore.controller.ProductSelectorComposer">
+                <caption src="/img/profile.png" sclass="fn-caption" label="${c:l('page.title.product.detail')}"/>
+                <grid width="500px">
+                    <columns>
+                        <column align="right" hflex="min" />
+                        <column/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <cell sclass="row-title">ID :</cell>
+                            <cell><label id="product-id" /></cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Name :</cell>
+                            <cell>
+                                <textbox id="product-name" width="200px" inplace="true"
+                                         constraint="no empty: Product name should not be empty!"/>
+                            </cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Price :</cell>
+                            <cell>
+                                <intbox id="product-price" width="200px" inplace="true"
+                                        constraint="${c:new('com.greenstyle.greenstore.constraints.ProductPriceConstraint')}"/>
+                            </cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Image Name :</cell>
+                            <cell>
+                                <textbox id="product-image" width="200px" inplace="true" />
+                            </cell>
+                        </row>
+                        <row>
+                            <cell sclass="row-title">Description :</cell>
+                            <cell>
+                                <textbox id="product-description" height="200px" multiline="true" hflex="1" inplace="true" 
+                                         constraint="no empty: ${c:l('err.required.product.description')}"/>
+                            </cell>
+                        </row>
+                    </rows>
+                </grid>
+            </window>
+        </center>
+        <south border="none">
+<!--            apply 需要 zuti，這個jar在CE版本的zk maven repository已經找不到！ -->
+<!--            <apply templateURI="~./zul/footer.zul" />-->
+            <include src="~./zul/footer.zul"/>
+        </south>
+    </borderlayout>
+</zk>

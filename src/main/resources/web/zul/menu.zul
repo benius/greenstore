@@ -1,0 +1,8 @@
+<grid id="menuGrid" hflex="1" vflex="1" sclass="sidebar" apply="com.greenstyle.greenstore.controller.MenuSelectorComposor">
+    <columns>
+        <column width="36px"/>
+        <column/>
+    </columns>
+    <rows>
+    </rows>
+</grid>
