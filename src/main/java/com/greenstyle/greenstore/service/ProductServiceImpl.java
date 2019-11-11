@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 /**
  * <code>ProductServiceImpl</code>
@@ -44,5 +45,24 @@ public class ProductServiceImpl implements ProductService, Serializable {
         }
 
         return productDao.findByProductNameContainingIgnoreCase(keyword);
+    }
+
+    @Override
+    public Optional<Product> findById(String productId) throws Exception {
+        if (StringUtils.isEmpty(productId)) {
+            return Optional.empty();
+        }
+
+        return productDao.findById(productId);
+    }
+
+    @Override
+    public void createOrUpdate(Product product) throws Exception {
+        productDao.save(product);
+    }
+
+    @Override
+    public boolean existsById(String productId) throws Exception {
+        return productDao.existsById(productId);
     }
 }

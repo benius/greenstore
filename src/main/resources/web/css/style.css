@@ -66,3 +66,7 @@
 .todo-box {
 	padding-right:4px;
 }
+
+.row-value {
+	border: 1px solid;
+}

@@ -31,6 +31,13 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String id, String productName, Long price, String imageName, String description) {
+        this(productName, price, imageName, description);
+
+        setId(id);
+    }
+
+
     @Override
     public String toString() {
         return String.format("Product[id=%s, name=%s, price=%d, image=%s, description=%s]", id, productName, price, imageName, description);
@@ -40,19 +47,39 @@ public class Product {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getProductName() {
         return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Long getPrice() {
         return price;
     }
 
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getImageName() {
         return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }

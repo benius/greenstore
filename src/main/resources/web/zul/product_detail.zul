@@ -7,10 +7,15 @@
             <include src="~./zul/menu.zul"/>
         </west>
         <center id="mainContent" autoscroll="true" border="none">
-            <window title="List All Products" border="normal" hflex="1" vflex="1" contentStyle="overflow:auto" 
-                    apply="com.greenstyle.greenstore.controller.ProductSelectorComposer">
+            <window border="normal" hflex="1" vflex="1" contentStyle="overflow:auto"
+                    apply="com.greenstyle.greenstore.controller.ProductDetailSelectorComposor">
                 <caption src="/img/profile.png" sclass="fn-caption" label="${c:l('page.title.product.detail')}"/>
-                <grid width="500px">
+                <hbox align="center">
+                    Keyword:
+                    <textbox id="keyword"/>
+                    <button id="searchButton" label="Search" image="/img/search.png"/>
+                </hbox>
+                <grid width="100%">
                     <columns>
                         <column align="right" hflex="min" />
                         <column/>
@@ -22,33 +27,38 @@
                         </row>
                         <row>
                             <cell sclass="row-title">Name :</cell>
-                            <cell>
+                            <cell sclass="row-value">
                                 <textbox id="product-name" width="200px" inplace="true"
                                          constraint="no empty: Product name should not be empty!"/>
                             </cell>
                         </row>
                         <row>
                             <cell sclass="row-title">Price :</cell>
-                            <cell>
-                                <intbox id="product-price" width="200px" inplace="true"
-                                        constraint="${c:new('com.greenstyle.greenstore.constraints.ProductPriceConstraint')}"/>
+                            <cell sclass="row-value">
+                                <longbox id="product-price" width="200px" inplace="true"/>
+<!--                                <longbox id="product-price" width="200px" inplace="true"-->
+<!--                                         constraint="${c:new('com.greenstyle.greenstore.constraints.ProductPriceConstraint')}"/>-->
                             </cell>
                         </row>
                         <row>
                             <cell sclass="row-title">Image Name :</cell>
-                            <cell>
+                            <cell sclass="row-value">
                                 <textbox id="product-image" width="200px" inplace="true" />
                             </cell>
                         </row>
                         <row>
                             <cell sclass="row-title">Description :</cell>
-                            <cell>
+                            <cell sclass="row-value">
                                 <textbox id="product-description" height="200px" multiline="true" hflex="1" inplace="true" 
                                          constraint="no empty: ${c:l('err.required.product.description')}"/>
                             </cell>
                         </row>
                     </rows>
                 </grid>
+                <hlayout>
+                    <button id="saveProduct" label="Save"/>
+                    <button id="reloadProduct" label="Reload"/>
+                </hlayout>
             </window>
         </center>
         <south border="none">
