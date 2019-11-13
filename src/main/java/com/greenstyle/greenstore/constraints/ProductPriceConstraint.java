@@ -14,8 +14,12 @@ import org.zkoss.zul.Constraint;
 public class ProductPriceConstraint implements Constraint {
     @Override
     public void validate(Component comp, Object value) throws WrongValueException {
+        if (ObjectUtils.isEmpty(value)) {
+            throw new WrongValueException(comp, "The value can't be empty");
+        }
+
         // The int value must be the multiple of 5, e.g. 5, 10, 15, ...
-        if (ObjectUtils.isEmpty(value) || new Integer(value.toString()) % 5 != 0) {
+        if (new Integer(value.toString()) % 5 != 0) {
             throw new WrongValueException(comp, String.format("The value \"%s\" must be an integer, and the multiple of 5, e.g. 5, 10, 15, ...", value.toString()));
         }
     }

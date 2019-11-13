@@ -57,8 +57,8 @@ public class ProductServiceImpl implements ProductService, Serializable {
     }
 
     @Override
-    public void createOrUpdate(Product product) throws Exception {
-        productDao.save(product);
+    public Product createOrUpdate(Product product) throws Exception {
+        return productDao.save(product);
     }
 
     @Override

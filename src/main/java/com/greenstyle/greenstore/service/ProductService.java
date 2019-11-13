@@ -20,7 +20,7 @@ public interface ProductService {
 
     Optional<Product> findById(String productId) throws Exception;
 
-    void createOrUpdate(Product product) throws Exception;
+    Product createOrUpdate(Product product) throws Exception;
 
     boolean existsById(String productId) throws Exception;
 

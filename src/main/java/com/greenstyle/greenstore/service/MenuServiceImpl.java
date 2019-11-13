@@ -26,6 +26,7 @@ public class MenuServiceImpl implements MenuService, Serializable {
         menuItemMap.put("hello", new MenuItem("hello", "Welcome!", "/img/demo.png", "~./zul/hello.zul"));
         menuItemMap.put("list_products", new MenuItem("list_products", "Find Products", "/img/site.png", "~./zul/list_products.zul"));
         menuItemMap.put("product_detail", new MenuItem("product_detail", "Product Detail", "/img/site.png", "~./zul/product_detail.zul?id=2"));
+        menuItemMap.put("new_product", new MenuItem("new_product", "New Product", "/img/site.png", "~./zul/new_product.zul"));
     }
 
     @Override
