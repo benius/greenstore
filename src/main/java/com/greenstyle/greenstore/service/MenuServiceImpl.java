@@ -23,10 +23,11 @@ public class MenuServiceImpl implements MenuService, Serializable {
     private Map<String, MenuItem> menuItemMap = new LinkedHashMap<>();
 
     public MenuServiceImpl() {
-        menuItemMap.put("hello", new MenuItem("hello", "Welcome!", "/img/demo.png", "~./zul/hello.zul"));
-        menuItemMap.put("list_products", new MenuItem("list_products", "Find Products", "/img/site.png", "~./zul/list_products.zul"));
-        menuItemMap.put("product_detail", new MenuItem("product_detail", "Product Detail", "/img/site.png", "~./zul/product_detail.zul?id=2"));
-        menuItemMap.put("new_product", new MenuItem("new_product", "New Product", "/img/site.png", "~./zul/new_product.zul"));
+        menuItemMap.put("hello", new MenuItem("hello", "Welcome!", "/img/people.png", "~./zul/hello.zul"));
+        menuItemMap.put("list_products", new MenuItem("list_products", "Find Products", "/img/list-fat-7.png", "~./zul/list_products.zul"));
+        menuItemMap.put("product_detail", new MenuItem("product_detail", "Product Detail", "/img/info.png", "~./zul/product_detail.zul?id=2"));
+        menuItemMap.put("new_product", new MenuItem("new_product", "New Product", "/img/plus-sign.png", "~./zul/new_product.zul"));
+        menuItemMap.put("delete_products", new MenuItem("delete_products", "Delete Products", "/img/minus-sign.png", "~./zul/delete_products.zul"));
     }
 
     @Override

@@ -24,4 +24,6 @@ public interface ProductService {
 
     boolean existsById(String productId) throws Exception;
 
+    void deleteById(String productId) throws Exception;
+
 }

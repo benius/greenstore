@@ -1,5 +1,20 @@
+<?link rel="stylesheet" type="text/css" href="~./css/style.css"?>
 <zk>
-    <window title="Hello ZK - Spring Boot!" border="normal">
-        You are using ZK version <label value="${session.webApp.version}"/>
-    </window>
+    <borderlayout hflex="1" vflex="1">
+        <north height="10px" border="none"/>
+        <west width="300px" border="normal" collapsible="true" splittable="true" minsize="300">
+            <include src="~./zul/menu.zul"/>
+        </west>
+        <center id="mainContent" autoscroll="true" border="none">
+            <window title="Hello ZK - Spring Boot!" border="normal">
+                You are using ZK version
+                <label value="${session.webApp.version}"/>
+            </window>
+        </center>
+        <south border="none">
+            <!--            apply 需要 zuti，這個jar在CE版本的zk maven repository已經找不到！ -->
+            <!--            <apply templateURI="~./zul/footer.zul" />-->
+            <include src="~./zul/footer.zul"/>
+        </south>
+    </borderlayout>
 </zk>

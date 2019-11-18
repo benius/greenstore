@@ -3,11 +3,11 @@
 <zk>
     <borderlayout hflex="1" vflex="1">
         <north height="10px" border="none"/>
-        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300">
+        <west width="300px" border="normal" collapsible="true" splittable="true" minsize="300">
             <include src="~./zul/menu.zul"/>
         </west>
         <center id="mainContent" autoscroll="true" border="none">
-            <window border="normal" hflex="1" vflex="1" contentStyle="overflow:auto"
+            <window title="Create a Product"  border="normal" hflex="1" vflex="1" contentStyle="overflow:auto"
                     apply="com.greenstyle.greenstore.controller.NewProductSelectorComposor">
                 <caption src="/img/profile.png" sclass="fn-caption" label="${c:l('page.title.new.product')}"/>
                 <grid width="100%">

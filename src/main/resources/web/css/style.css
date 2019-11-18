@@ -9,16 +9,6 @@
 .banner .logout{
 	text-decoration: underline;
 	cursor: pointer;
-} 
-
-.footer {
-	background-color:#102d35;
-	color: white;
-	padding-top: 5px;
-}
-
-.footer a,.footer a:VISITED {
-	color: white;	
 }
 
 .sidebar a,.sidebar a:VISITED {
@@ -65,8 +55,4 @@
 
 .todo-box {
 	padding-right:4px;
-}
-
-.row-value {
-	border: 1px solid;
 }

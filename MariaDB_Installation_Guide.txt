@@ -5,23 +5,99 @@ ssh masonhsieh@192.168.89.184
 [SSH]$ sudo systemctl enable mariadb.service
 [SSH]$ sudo systemctl start mariadb.service
 [SSH]$ sudo mysql_secure_installation
-***********************************************
-	Set root password? [Y/n] Y
-	Remove anonymous users? [Y/n] Y
-	Disallow root login remotely? [Y/n] Y
-	Remove test database and access to it? [Y/n] Y
-	Reload privilege tables now? [Y/n] Y
-***********************************************
+Set root password? [Y/n] Y
+Remove anonymous users? [Y/n] Y
+Disallow root login remotely? [Y/n] Y
+Remove test database and access to it? [Y/n] Y
+Reload privilege tables now? [Y/n] Y
+
 	
 [SSH]$ mysql -u root -p
-***********************************************
-	MariaDB [(none)]> create database greenstyle;
-	MariaDB [(none)]> grant all on greenstyle.* to greendba@localhost identified by 'greendba';
-	MariaDB [(none)]> quit
-***********************************************
+MariaDB [(none)]> create database greenstyle;
+MariaDB [(none)]> grant all privileges on greenstyle.* to greendba@localhost identified by 'greendba';
+MariaDB [(none)]> quit
+
 
 [SSH]$ mysql -u greendba -p'greendba' greenstyle
-***********************************************
-	MariaDB [greenstyle]> 
-	MariaDB [(none)]> quit
-***********************************************
+MariaDB [greenstyle]> 
+MariaDB [(none)]> quit
+
+
+允許遠端連線的設定方式：
+----------先執行su切換到root，以下全部在root環境下執行：-----------
+
+1. 修改檔案：/etc/my.cnf.d/mariadb-server.cnf
+	取消下列的mark:
+	bind-address=0.0.0.0
+2. 重新啟動mariadb service：
+[SSH]# systemctl restart mariadb.service
+3. 確認變更生效，使用下列指令確認mariadb有啟動，port為3306：
+[SSH]# netstat -anp | grep 3306
+tcp        0      0 0.0.0.0:3306            0.0.0.0:*               LISTEN      4340/mysqld  
+4. 設定遠端連線權限：
+[SSH]# mysql -u root -p
+MariaDB [(none)]> create user 'greendba'@'%' identified by 'greendba';
+MariaDB [(none)]> grant all privileges on greenstyle.* to 'greendba'@'%' identified by 'greendba';
+MariaDB [(none)]> quit;
+
+
+PS.-------------------------------------
+若執行發生無法create user的錯誤，請刪除下列用戶的權限，再刪除下列用戶，重新建立用戶'greendba'@'%' ，不用再建立'greendba'@'localhost'，指令如下：
+[SSH]# mysql -u root -p
+
+MariaDB [(none)]> select user, host from mysql.user;
++----------+-----------+
+| user     | host      |
++----------+-----------+
+| greendba | %         |
+| root     | 127.0.0.1 |
+| root     | ::1       |
+| greendba | localhost |
+| root     | localhost |
++----------+-----------+
+5 rows in set (0.011 sec)
+
+MariaDB [(none)]> revoke all privileges, grant option from 'greendba'@'%';
+MariaDB [(none)]> drop user 'greendba'@'%';
+MariaDB [(none)]> revoke all privileges, grant option from 'greendba'@'localhost';
+MariaDB [(none)]> drop user 'greendba'@'localhost';
+MariaDB [(none)]> create user 'greendba'@'%' identified by 'greendba';
+MariaDB [(none)]> grant all privileges on greenstyle.* to 'greendba'@'%' identified by 'greendba';
+MariaDB [(none)]> quit;
+End PS.-------------------------------------
+
+
+5. 開啟Redhat Firewall port 3306
+(1) 確認有安裝firewalld，取代舊版的iptables的設定方式：
+[SSH]# dnf install firewalld 
+(2) Enable and start service: firewalld
+[SSH]# systemctl enable firewalld
+[SSH]# systemctl start firewalld
+(3) 查看目前firewall狀況：
+[SSH]# firewall-cmd --list-all
+(4) 允許 3306永遠通過firewall：
+[SSH]# firewall-cmd --zone=public --add-port=3306/tcp --permanent
+[SSH]# firewall-cmd --reload
+(5) 確認有開通：
+[SSH]# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens160
+  sources: 
+  services: cockpit dhcpv6-client ssh
+  ports: 3306/tcp
+  protocols: 
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+(6) 服務重載：
+[SSH]# systemctl restart firewalld
+
+
+MariaDB連線資訊：
+jdbc:mariadb://192.168.89.184:3306/greenstyle
+User / Password: greendba / greendba
+

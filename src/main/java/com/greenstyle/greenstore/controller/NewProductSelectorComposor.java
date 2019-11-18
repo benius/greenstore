@@ -2,6 +2,7 @@ package com.greenstyle.greenstore.controller;
 
 import com.greenstyle.greenstore.model.Product;
 import com.greenstyle.greenstore.service.ProductService;
+import org.springframework.util.ObjectUtils;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -57,7 +58,7 @@ public class NewProductSelectorComposor extends SelectorComposer<Component> {
         Product product = new Product(productName, productPrice, productImageName, productDescription);
         product = productService.createOrUpdate(product);
 
-        productIdLabel.setValue(product.getId());
+        productIdLabel.setValue(product.getProductId() != null ? product.getProductId() : "");
         productNameTextbox.setValue(product.getProductName());
         productPriceIntbox.setValue(product.getPrice());
         productImageTextbox.setValue(product.getImageName());

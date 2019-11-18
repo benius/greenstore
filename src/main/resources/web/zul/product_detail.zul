@@ -3,11 +3,11 @@
 <zk>
     <borderlayout hflex="1" vflex="1">
         <north height="10px" border="none"/>
-        <west width="200px" border="normal" collapsible="true" splittable="true" minsize="300">
+        <west width="300px" border="normal" collapsible="true" splittable="true" minsize="300">
             <include src="~./zul/menu.zul"/>
         </west>
         <center id="mainContent" autoscroll="true" border="none">
-            <window border="normal" hflex="1" vflex="1" contentStyle="overflow:auto"
+            <window title="Modify Product / Product Detailk"  border="normal" hflex="1" vflex="1" contentStyle="overflow:auto"
                     apply="com.greenstyle.greenstore.controller.ProductDetailSelectorComposor">
                 <caption src="/img/profile.png" sclass="fn-caption" label="${c:l('page.title.product.detail')}"/>
                 <hbox align="center">
@@ -27,14 +27,14 @@
                         </row>
                         <row>
                             <cell sclass="row-title">Name :</cell>
-                            <cell sclass="row-value">
+                            <cell>
                                 <textbox id="product-name" width="200px" inplace="true"
                                          constraint="no empty: Product name should not be empty!"/>
                             </cell>
                         </row>
                         <row>
                             <cell sclass="row-title">Price :</cell>
-                            <cell sclass="row-value">
+                            <cell>
                                 <longbox id="product-price" width="200px" inplace="true"/>
 <!--                                <longbox id="product-price" width="200px" inplace="true"-->
 <!--                                         constraint="${c:new('com.greenstyle.greenstore.constraints.ProductPriceConstraint')}"/>-->
@@ -42,13 +42,13 @@
                         </row>
                         <row>
                             <cell sclass="row-title">Image Name :</cell>
-                            <cell sclass="row-value">
+                            <cell>
                                 <textbox id="product-image" width="200px" inplace="true" />
                             </cell>
                         </row>
                         <row>
                             <cell sclass="row-title">Description :</cell>
-                            <cell sclass="row-value">
+                            <cell>
                                 <textbox id="product-description" height="200px" multiline="true" hflex="1" inplace="true" 
                                          constraint="no empty: ${c:l('err.required.product.description')}"/>
                             </cell>

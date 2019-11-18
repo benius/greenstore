@@ -1,5 +1,6 @@
 package com.greenstyle.greenstore.service;
 
+import com.greenstyle.greenstore.dao.MetaDataDao;
 import com.greenstyle.greenstore.dao.ProductDao;
 import com.greenstyle.greenstore.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,12 @@ public class ProductServiceImpl implements ProductService, Serializable {
 
     private ProductDao productDao;
 
-    public ProductServiceImpl(@Autowired ProductDao productDao) {
+    private MetaDataDao metaDataDao;
+
+    public ProductServiceImpl(@Autowired ProductDao productDao,
+                              @Autowired MetaDataDao metaDataDao) {
         this.productDao = productDao;
+        this.metaDataDao = metaDataDao;
     }
 
     @Override
@@ -64,5 +69,10 @@ public class ProductServiceImpl implements ProductService, Serializable {
     @Override
     public boolean existsById(String productId) throws Exception {
         return productDao.existsById(productId);
+    }
+
+    @Override
+    public void deleteById(String productId) throws Exception {
+        productDao.deleteById(productId);
     }
 }

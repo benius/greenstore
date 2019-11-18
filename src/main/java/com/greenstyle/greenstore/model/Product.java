@@ -1,9 +1,8 @@
 package com.greenstyle.greenstore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * <code>Product</code>
@@ -15,11 +14,17 @@ import javax.persistence.Id;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GenericGenerator(name="product_id_seq", strategy = "com.greenstyle.greenstore.model.ProductIdGenerator")
+    @GeneratedValue(generator = "product_id_seq")
+    @Column(name = "PRODUCT_ID", columnDefinition = "varchar(1024)", unique = true, nullable = false)
+    private String productId;
+    @Column(name = "PRODUCT_NAME", columnDefinition = "varchar(1024) CHARACTER SET utf8", unique = true, nullable = false)
     private String productName;
+    @Column(name = "PRODUCT_PRICE", columnDefinition = "bigint", unique = false, nullable = false)
     private Long price;
+    @Column(name = "PRODCUT_DESC", columnDefinition = "varchar(4096) CHARACTER SET utf8", unique = false, nullable = true)
     private String description;
+    @Column(name = "PRODUCT_PHOTO", columnDefinition = "varchar(1024) CHARACTER SET utf8", unique = false, nullable = true)
     private String imageName;
 
     protected Product() {}
@@ -31,24 +36,24 @@ public class Product {
         this.description = description;
     }
 
-    public Product(String id, String productName, Long price, String imageName, String description) {
+    public Product(String productId, String productName, Long price, String imageName, String description) {
         this(productName, price, imageName, description);
 
-        setId(id);
+        setProductId(productId);
     }
 
 
     @Override
     public String toString() {
-        return String.format("Product[id=%s, name=%s, price=%d, image=%s, description=%s]", id, productName, price, imageName, description);
+        return String.format("Product[productId=%s, name=%s, price=%d, image=%s, description=%s]", productId, productName, price, imageName, description);
     }
 
-    public String getId() {
-        return id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {

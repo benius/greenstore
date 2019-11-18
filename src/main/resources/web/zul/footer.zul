@@ -1,6 +1,6 @@
-<div hflex="1">
-	<vbox hflex="1" align="center" sclass="footer">
-		ZK Essentials, you are using ZK ${desktop.webApp.version}
-		<a href="http://www.zkoss.org">http://www.zkoss.org</a>
-	</vbox>
+<div>
+	<vlayout style="padding: 20px; text-align: center">
+		<label>ZK Essentials, you are using ZK ${desktop.webApp.version}</label>
+		<div vflex="1">本網站為示範用，所使用圖片來自<a href="https://www.hucc-coop.tw/product/productlist">主婦聯盟</a>，本網站並不擁有圖片版權，僅借用做程式開發範例用。</div>
+	</vlayout>
 </div>

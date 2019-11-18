@@ -2,6 +2,7 @@ package com.greenstyle.greenstore.controller;
 
 import com.greenstyle.greenstore.model.Product;
 import com.greenstyle.greenstore.service.ProductService;
+import org.springframework.util.StringUtils;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
@@ -53,8 +54,12 @@ public class ProductDetailSelectorComposor extends SelectorComposer<Component> {
     public void searchProducts() throws Exception {
         String productId = keywordBox.getValue();
 
+        if (StringUtils.isEmpty(productId)) {
+            return;
+        }
+
         productService.findById(productId).ifPresent(foundProduct -> {
-            productIdLabel.setValue(foundProduct.getId());
+            productIdLabel.setValue(foundProduct.getProductId());
             productNameTextbox.setValue(foundProduct.getProductName());
             productPriceIntbox.setValue(foundProduct.getPrice());
             productImageTextbox.setValue(foundProduct.getImageName());
@@ -78,12 +83,14 @@ public class ProductDetailSelectorComposor extends SelectorComposer<Component> {
     public void reloadProduct() throws Exception {
         String productId = productIdLabel.getValue();
 
+        if (productId == null) 
+
         if (!productService.existsById(productId)) {
             throw new EntityNotFoundException("Product not found with id=" + productId);
         }
 
         productService.findById(productId).ifPresent(foundProduct -> {
-            productIdLabel.setValue(foundProduct.getId());
+            productIdLabel.setValue(foundProduct.getProductId() != null ? foundProduct.getProductId() : "");
             productNameTextbox.setValue(foundProduct.getProductName());
             productPriceIntbox.setValue(foundProduct.getPrice());
             productImageTextbox.setValue(foundProduct.getImageName());

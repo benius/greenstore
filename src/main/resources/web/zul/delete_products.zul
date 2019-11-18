@@ -6,14 +6,15 @@
             <include src="~./zul/menu.zul"/>
         </west>
         <center id="mainContent" autoscroll="true" border="none">
-            <window title="List All Products" width="100%" border="normal"
-                    apply="com.greenstyle.greenstore.controller.ProductSelectorComposer">
-                <hbox align="center">
-                    Keyword:
-                    <textbox id="keywordBox"/>
-                    <button id="searchButton" label="Search" image="/img/search.png"/>
-                </hbox>
-                <listbox id="productListbox" emptyMessage="No product found in the result">
+            <window title="Delete Selected Products" width="100%" border="normal"
+                    apply="com.greenstyle.greenstore.controller.DeleteProductSelectorComposer">
+                    <hbox pack="center" align="center">
+                        Keyword:
+                        <textbox id="keywordBox"/>
+                        <button id="searchButton" label="Search" image="/img/search.png"/>
+                        <button id="deleteButton" label="Delete Selected Products"/>
+                    </hbox>
+                <listbox id="productListbox" checkmark="true" multiple="true" span="true" emptyMessage="No product found in the result">
                     <listhead>
                         <listheader label="ID" width="10%" align="center"/>
                         <listheader label="Name" align="center"/>
@@ -25,8 +26,8 @@
                         <listitem>
                             <listcell label="${each.productId}" />
                             <listcell label="${each.productName}" />
-                            <listcell>$
-                                <label value="${each.price}"/>
+                            <listcell>
+                                $<label value="${each.price}"/>
                             </listcell>
                             <listcell>
                                 <image src="/img/${each.imageName}" height="200px"/>
@@ -35,9 +36,10 @@
                         </listitem>
                     </template>
                 </listbox>
+
             </window>
         </center>
-        <south border="normal">
+        <south border="none">
 <!--            apply 需要 zuti，這個jar在CE版本的zk maven repository已經找不到！ -->
 <!--            <apply templateURI="~./zul/footer.zul" />-->
             <include src="~./zul/footer.zul"/>
